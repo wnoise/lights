@@ -27,10 +27,9 @@ struct g35_packet
 // of the right times.
 struct g35_packet_sender
 {
-    g35_packet packet;
     int state;
-    int get_next_level();
-    int get_level(int time);
+    int get_next_level(g35_packet p);
+    int get_level(g35_packet p, int time);
     static const unsigned START_STATES = 1;
     static const unsigned ADDRESS_STATES = 3 * ADDRESS_BITS;
     static const unsigned INTENSITY_STATES = 3 * INTENSITY_BITS;

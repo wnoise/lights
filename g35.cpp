@@ -15,14 +15,16 @@ static int get_level_from(unsigned data, unsigned state_in_field)
     }
 }
 
-int g35_packet_sender::get_next_level()
+int g35_packet_sender::get_next_level(g35_packet packet)
 {
-    int level = get_level(state);
+    int level = get_level(packet, state);
     ++state;
+    if (level < 0)
+        state = 0;
     return level;
 }
 
-int g35_packet_sender::get_level(int state)
+int g35_packet_sender::get_level(g35_packet packet, int state)
 {
     if (state < START_STATES)
         return 1;
