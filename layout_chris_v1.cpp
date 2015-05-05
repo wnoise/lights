@@ -6,6 +6,7 @@
 #include "g35.h"
 #include "lightstring.h"
 #include "framebuffer.h"
+#include "pin_handler.h"
 
 static gridlocation string0[48] =
 {
@@ -36,23 +37,7 @@ static lightstring s[4] =
     {&f, 16, 48, string3 }
 };
 
-struct handler
-{
-    handler(lightstring *s, unsigned pin)
-    : s(s)
-    , pin(pin)
-    {}
-    lightstring *s;
-    unsigned pin;
-    void setbit(void)
-    {
-        unsigned val;
-        digitalWriteFast(pin, val);
-    }
-};
-
-
-handler h[4] =
+pin_handler h[4] =
 {
     {&s[0], 13},
     {&s[1], 14},
