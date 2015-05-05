@@ -25,7 +25,7 @@ int g35_packet_sender::get_next_level()
 int g35_packet_sender::get_level(int state)
 {
     if (state < START_STATES)
-        return 0;
+        return 1;
     state -= START_STATES;
     if (state < ADDRESS_STATES) {
         return get_level_from(packet.address, state);
@@ -47,6 +47,10 @@ int g35_packet_sender::get_level(int state)
         return get_level_from(packet.p.red, state);
     }
     state -= RED_STATES;
+    if (state < END_STATES) {
+        return 0;
+    }
+    state -= END_STATES;
     // End of packet.
     return -1;
 }
