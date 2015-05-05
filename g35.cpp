@@ -1,9 +1,9 @@
 #include "g35.h"
 
-static int get_level_from(unsigned data, unsigned time_in_field)
+static int get_level_from(unsigned data, unsigned state_in_field)
 {
-    unsigned bitnumber = time_in_field / 3;
-    unsigned portion = time_in_field % 3;
+    unsigned bitnumber = state_in_field / 3;
+    unsigned portion = state_in_field % 3;
     unsigned bitvalue = (data >> bitnumber) & 1;
     switch (portion) {
         case 0:
@@ -17,36 +17,36 @@ static int get_level_from(unsigned data, unsigned time_in_field)
 
 int g35_packet_sender::get_next_level()
 {
-    int level = get_level(time);
-    ++time;
+    int level = get_level(state);
+    ++state;
     return level;
 }
 
-int g35_packet_sender::get_level(int time)
+int g35_packet_sender::get_level(int state)
 {
-    if (time < RESET_TIME)
+    if (state < START_STATES)
         return 0;
-    time -= RESET_TIME;
-    if (time < ADDRESS_TIME) {
-        return get_level_from(packet.address, time);
+    state -= START_STATES;
+    if (state < ADDRESS_STATES) {
+        return get_level_from(packet.address, state);
     }
-    time -= ADDRESS_TIME;
-    if (time < INTENSITY_TIME) {
-        return get_level_from(packet.p.intensity, time);
+    state -= ADDRESS_STATES;
+    if (state < INTENSITY_STATES) {
+        return get_level_from(packet.p.intensity, state);
     }
-    time -= INTENSITY_TIME;
-    if (time < BLUE_TIME) {
-        return get_level_from(packet.p.blue, time);
+    state -= INTENSITY_STATES;
+    if (state < BLUE_STATES) {
+        return get_level_from(packet.p.blue, state);
     }
-    time -= BLUE_TIME;
-    if (time < GREEN_TIME) {
-        return get_level_from(packet.p.green, time);
+    state -= BLUE_STATES;
+    if (state < GREEN_STATES) {
+        return get_level_from(packet.p.green, state);
     }
-    time -= GREEN_TIME;
-    if (time < RED_TIME) {
-        return get_level_from(packet.p.red, time);
+    state -= GREEN_STATES;
+    if (state < RED_STATES) {
+        return get_level_from(packet.p.red, state);
     }
-    time -= RED_TIME;
+    state -= RED_STATES;
     // End of packet.
     return -1;
 }

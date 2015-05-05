@@ -28,14 +28,14 @@ struct g35_packet
 struct g35_packet_sender
 {
     g35_packet packet;
-    int time;
+    int state;
     int get_next_level();
     int get_level(int time);
-    static const unsigned RESET_TIME = 3;
-    static const unsigned ADDRESS_TIME = 3 * ADDRESS_BITS;
-    static const unsigned INTENSITY_TIME = 3 * INTENSITY_BITS;
-    static const unsigned BLUE_TIME = 3 * COLOR_BITS;
-    static const unsigned GREEN_TIME = 3 * COLOR_BITS;
-    static const unsigned RED_TIME = 3 * COLOR_BITS;
+    static const unsigned START_STATES = 1;
+    static const unsigned ADDRESS_STATES = 3 * ADDRESS_BITS;
+    static const unsigned INTENSITY_STATES = 3 * INTENSITY_BITS;
+    static const unsigned BLUE_STATES = 3 * COLOR_BITS;
+    static const unsigned GREEN_STATES = 3 * COLOR_BITS;
+    static const unsigned RED_STATES = 3 * COLOR_BITS;
 };
 #endif
