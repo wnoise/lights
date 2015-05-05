@@ -1,13 +1,14 @@
 #include "g35.h"
 #include "lightstring.h"
 
-g35_packet lightstring::next_packet()
+g35_packet * lightstring::next_packet()
 {
     if (!initialized) {
-        return initial_packet();
+        pending_packet = initial_packet();
     } else {
-        return regular_packet();
+        pending_packet = regular_packet();
     }
+    return &pending_packet;
 }
 
 g35_packet lightstring::initial_packet()
