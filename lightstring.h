@@ -7,19 +7,19 @@ struct lightstring
 {
     lightstring(framebuffer *f, unsigned pin, unsigned size, gridlocation *path)
         : f(f)
+        , path(path)
         , pin(pin)
         , size(size)
-        , path(path)
         , pending_packet(0,{})
         {
         }
+    framebuffer *f;
+    const gridlocation * const path;
     const int pin;
     const int size;
-    const gridlocation * const path;
+    g35_packet pending_packet;
     int current_index;
     int initialized;
-    g35_packet pending_packet;
-    framebuffer *f;
 
     unsigned address_from_index(unsigned index) { return index; }
     g35_packet * next_packet();
