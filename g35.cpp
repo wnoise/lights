@@ -24,7 +24,7 @@ int g35_packet_sender::get_next_level(g35_packet packet)
     return level;
 }
 
-int g35_packet_sender::get_level(g35_packet packet, int state)
+int g35_packet_sender::get_level(g35_packet packet, unsigned state)
 {
     if (state < START_STATES)
         return 1;

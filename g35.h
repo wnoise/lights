@@ -1,8 +1,8 @@
 #ifndef G35_H
 #define G35_H
-const int ADDRESS_BITS = 6;
-const int INTENSITY_BITS = 8;
-const int COLOR_BITS = 4;
+const unsigned ADDRESS_BITS = 6;
+const unsigned INTENSITY_BITS = 8;
+const unsigned COLOR_BITS = 4;
 
 struct g35_pixel
 {
@@ -27,9 +27,9 @@ struct g35_packet
 // of the right times.
 struct g35_packet_sender
 {
-    int state;
+    unsigned state;
     int get_next_level(g35_packet p);
-    int get_level(g35_packet p, int time);
+    int get_level(g35_packet p, unsigned state);
     static const unsigned START_STATES = 1;
     static const unsigned ADDRESS_STATES = 3 * ADDRESS_BITS;
     static const unsigned INTENSITY_STATES = 3 * INTENSITY_BITS;
