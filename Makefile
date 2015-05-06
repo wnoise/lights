@@ -66,7 +66,9 @@ SIZE = $(abspath $(COMPILERPATH))/arm-none-eabi-size
 # TODO: this does not handle Arduino libraries yet...
 C_FILES := $(wildcard *.c)
 CPP_FILES := $(wildcard *.cpp)
-OBJS := $(C_FILES:.c=.o) $(CPP_FILES:.cpp=.o) IntervalTimer.o
+EXTERNAL_OBJECTS:= pins_teensy.o usb_desc.o usb_dev.o usb_serial.o yield.o usb_mem.o nonstd.o analog.o serial1.o serial2.o serial3.o HardwareSerial1.o HardwareSerial2.o HardwareSerial3.o usb_inst.o mk20dx128.o
+OBJS := $(C_FILES:.c=.o) $(CPP_FILES:.cpp=.o) $(EXTERNAL_OBJECTS)
+
 
 
 # the actual makefile rules (all .o files built by GNU make's default implicit rules)
