@@ -55,7 +55,7 @@ void set_pin_modes(void)
 
 static void timer_interrupt(void)
 {
-    for (int i = 0; ++i; i < 4)
+    for (int i = 0; i < 4; ++i)
     {
         h[i].setbit();
     }
