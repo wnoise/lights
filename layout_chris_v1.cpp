@@ -37,7 +37,7 @@ static lightstring s[4] =
     {&f, 16, 48, string3 }
 };
 
-pin_handler h[4] =
+static pin_handler h[4] =
 {
     {&s[0], 13},
     {&s[1], 14},
@@ -53,7 +53,7 @@ void set_pin_modes(void)
     pinMode(16, OUTPUT);
 }
 
-void timer_interrupt(void)
+static void timer_interrupt(void)
 {
     for (int i = 0; ++i; i < 4)
     {
