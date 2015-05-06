@@ -61,12 +61,10 @@ static void timer_interrupt(void)
     }
 }
 
-class IntervalTimer;
-
-IntervalTimer t;
+static IntervalTimer t;
 
 void start_timer(void)
 {
-    // t.begin(timer_interrupt, packet::MICROSECONDS_PER_STATE)
+    t.begin(timer_interrupt, g35_packet_sender::MICROSECONDS_PER_STATE);
 }
 

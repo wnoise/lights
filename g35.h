@@ -37,5 +37,6 @@ struct g35_packet_sender
     static const unsigned GREEN_STATES = 3 * COLOR_BITS;
     static const unsigned RED_STATES = 3 * COLOR_BITS;
     static const unsigned END_STATES = 3;
+    static const unsigned MICROSECONDS_PER_STATE = 10;
 };
 #endif
