@@ -5,17 +5,15 @@
 
 struct lightstring
 {
-    lightstring(framebuffer *f, unsigned pin, unsigned size, gridlocation *path)
+    lightstring(framebuffer *f, unsigned size, gridlocation *path)
         : f(f)
         , path(path)
-        , pin(pin)
         , size(size)
         , pending_packet(0,{})
         {
         }
     framebuffer *f;
     const gridlocation * const path;
-    const int pin;
     const int size;
     g35_packet pending_packet;
     int current_index;

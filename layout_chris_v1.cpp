@@ -28,10 +28,10 @@ framebuffer f;
 
 static lightstring s[4] =
 {
-    {&f, 13, 48, string0 },
-    {&f, 14, 50, string1 },
-    {&f, 15, 50, string2 },
-    {&f, 16, 48, string3 }
+    {&f, 48, string0 },
+    {&f, 50, string1 },
+    {&f, 50, string2 },
+    {&f, 48, string3 }
 };
 
 static pin_handler h[4] =
